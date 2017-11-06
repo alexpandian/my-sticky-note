@@ -1,0 +1,8 @@
+<form class="sa-innate-form" method="post" name="loginFrom" ng-submit="validateLogin(loginFrom)" ng-controller="loginController">
+    <label>Email Address</label>
+    <input type="email" ng-model="user.email" placeholder="Email" required="required">
+    <label>Password</label>
+    <input type="password" ng-model="user.password" placeholder="password" required="required">
+    <button type="submit" class="btn" ng-disabled="loginFrom.$invalid">Sign In</button>
+    <a ui-sref="forgetPassword">Forgot Password?</a>
+</form>
