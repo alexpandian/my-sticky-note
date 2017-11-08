@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
-				<div class="form-body">
+				<div class="form-body shadow">
 				    <ul class="nav nav-tabs final-login">
 				        <li ui-sref="login" ui-sref-active="active" class="pointer">
 				        	<a>Sign In</a>

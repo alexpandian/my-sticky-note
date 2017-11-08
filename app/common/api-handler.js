@@ -4,14 +4,45 @@ apiHandler.service("requestService", ["_ak_","apiRootUrl", "$http", "$rootScope"
 
 	function handle404(){
 		//console.log($rootScope);
-		alert("404");
+		//alert("404");
 	};
 
 	function handleUnknown(){
 		alert("unknown");
 	};
 
-	this.makeGetApi = function(relativeUrl, requestData){
+	function handleApiErrors(response){
+		switch(response.status){
+
+			case 404:
+				handle404();
+			break;
+
+			default :
+				handleUnknown();
+			break; 
+		}
+	};
+
+	this.makePutRequest = function(relativeUrl, requestData){
+		requestData._ak_ = apiKey;
+		$http({
+			method : "PUT",
+			url    : apiRootUrl + relativeUrl,
+			data   : requestData
+		})
+		.then(
+			function(response){
+				return response.data;
+			}, 
+			function(response){
+				handleApiErrors(response);
+				return false;
+			}
+		);
+	};
+
+	this.makePostRequest = function(relativeUrl, requestData){
 		requestData._ak_ = apiKey;
 		$http({
 			method : "POST",
@@ -23,17 +54,8 @@ apiHandler.service("requestService", ["_ak_","apiRootUrl", "$http", "$rootScope"
 				return response.data;
 			}, 
 			function(response){
-				
-				switch(response.status){
-
-					case 404:
-						handle404();
-					break;
-
-					default :
-						handleUnknown();
-					break; 
-				}
+				handleApiErrors(response);
+				return false;
 			}
 		);
 	};

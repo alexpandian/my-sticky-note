@@ -38,7 +38,8 @@ body{
     border: none !important;
     border-radius:none !important;
   text-transform:uppercase;
-  font-size:16px;
+  font-size:15px;
+  font-weight: bold;
 }
 
 .social-login{
@@ -74,7 +75,7 @@ body{
 .social-login ul li:nth-child(3) a{
   background:#3698d9;
 }
-.sa-innate-form input[type=text],input[type=email], input[type=password], input[type=file], textarea, select, email{
+input[type=text],input[type=email], input[type=password], input[type=file], textarea, select, email{
     font-size:13px;
   padding:10px;
   border:1px solid#ccc;
@@ -119,7 +120,7 @@ body{
   cursor: pointer;
 }
 
-input.ng-invalid, input.ng-invalid-required{
+input.ng-invalid, input.ng-invalid-required, input.ng-invalid-email{
   border-color: #f51100;
 }
 input.ng-valid{
@@ -127,4 +128,42 @@ input.ng-valid{
 }
 input.ng-pristine{
   border-color: #CCCCCC;
+}
+.shadow {
+  -webkit-box-shadow: 5px 5px 20px 5px #a9a3a3;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    5px 5px 20px 5px #a9a3a3;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         5px 5px 20px 5px #a9a3a3;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+.formGuide {
+	display: inline-block;
+	position: absolute;
+	background: #d14d42;
+	padding: 15px;
+	left: 94%;
+	color:#FFFFFF;
+	width: fit-content;
+	/*visibility: hidden;*/
+}
+.formGuide:after {
+	content: '';
+	display: block;  
+	position: absolute;
+	right: 100%;
+	top: 50%;
+	margin-top: -10px;
+	width: 0;
+	height: 0;
+	border-top: 10px solid transparent;
+	border-right: 10px solid #d14d42;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+.formGuide.nameTop{
+	top:19%;
+}
+.formGuide.emailTop{
+	top:33%;
+}
+.formGuide.passwordTop{
+	top : 50%;
 }
