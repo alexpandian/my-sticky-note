@@ -13,11 +13,13 @@ login.config(function($stateProvider, $urlRouterProvider){
 	$stateProvider.state({
 		name : "join",
 		url  : "/join",
+		controller : "joinController",
 		templateUrl : "./app/templates/join.html"
 	});
 	$stateProvider.state({
 		name : "forgetPassword",
 		url  : "/forgetPassword",
+		controller : "forgetPasswordController",
 		templateUrl : "./app/templates/forgetPassword.html"
 	});
 	$urlRouterProvider.otherwise('/login');
@@ -28,6 +30,7 @@ login.config(function($stateProvider, $urlRouterProvider){
 login.service("loginrequestService", ["requestService", "_ak_","apiRootUrl", "$http", function(requestService, apiKey, apiRootUrl, $http){
 
 	this.checkLogin = function(requestData){
+		return true;
 		return requestService.makePostRequest("/login", requestData );
 	};
 
@@ -35,7 +38,7 @@ login.service("loginrequestService", ["requestService", "_ak_","apiRootUrl", "$h
 login.service("joinRequestService", ["requestService", "_ak_","apiRootUrl", "$http", function(requestService, apiKey, apiRootUrl, $http){
 
 	this.registerUser = function(requestData){
-		return requestService.makePutRequest("/join", requestData );
+		return requestService.makePostRequest("/join", requestData );
 	};
 	this.checkNewEmail = function(requestData){
 		if(requestData.email == "test@test.com" ){
@@ -48,9 +51,20 @@ login.service("joinRequestService", ["requestService", "_ak_","apiRootUrl", "$ht
 	};
 
 }]);
-login.controller("loginController", ["loginrequestService", "$scope", function(loginrequestService, $scope){
-	$scope.validateLogin = function(loginFrom){ console.log(loginFrom);
-		loginrequestService.checkLogin({ name : "alex" });
+login.service("ForgetPasswordRequestService", ["requestService", "_ak_","apiRootUrl", "$http", function(requestService, apiKey, apiRootUrl, $http){
+
+	this.resetPassword = function(requestData){
+		return false;
+		return requestService.makePostRequest("/resetPassword", requestData );
+	};
+
+}]);
+login.controller("loginController", ["loginrequestService", "$scope","$window","appOriginUrl", function(loginrequestService, $scope, $window, appOriginUrl){
+	$scope.validateLogin = function(loginFrom){ 
+		var result = loginrequestService.checkLogin($scope.user);
+		if(result){ 
+			$window.location.href = appOriginUrl + "/digitalDiary";
+		}
 	};
 	
 }]);
@@ -58,7 +72,10 @@ login.controller("loginController", ["loginrequestService", "$scope", function(l
 
 login.controller("joinController", ["joinRequestService", "$scope", function(joinRequestService, $scope){
 	$scope.joinUser = function(joinForm){
-		joinRequestService.registerUser($scope.user);
+		var result = joinRequestService.registerUser($scope.user);
+		if(result){
+			$window.location.href = appOriginUrl + "/digitalDiary";
+		}
 	};
 	$scope.checkEmail = function(email){
 		if(email.$valid){
@@ -68,10 +85,26 @@ login.controller("joinController", ["joinRequestService", "$scope", function(joi
 				$scope.emailValidateHelp = false;
 			}else{
 				email.$setValidity("email", false);
-				//email.$invalid = true;
 				$scope.emailValidateHelp = true;
 				$scope.emailCheckResult = true;
 			}
 		}
 	};
+}]);
+
+login.controller("forgetPasswordController", ["ForgetPasswordRequestService", "$scope","$window","appOriginUrl", function(ForgetPasswordRequestService, $scope, $window, appOriginUrl){
+	$scope.resendPassword = function(forgotPassFrom){ 
+		$scope.emailValid = false;
+		$scope.emailinvalid = false;
+		var result = ForgetPasswordRequestService.resetPassword($scope.user);
+		if(result){ 
+			$scope.emailValid = true;
+			$scope.emailInvalid = false;
+			forgotPassFrom.$setValidity("valid", false);
+		}else{
+			$scope.emailValid = false;
+			$scope.emailInvalid = true;
+		}
+	};
+	
 }]);

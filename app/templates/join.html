@@ -1,4 +1,4 @@
-<form class="sa-innate-form" name="joinForm" ng-submit="joinUser(joinForm)" ng-controller="joinController">
+<form class="sa-innate-form" name="joinForm" ng-submit="joinUser(joinForm)" >
     <label>Name</label>
     <input type="text" name="name" ng-model="user.name" ng-focus="nameHelp=true" ng-blur="nameHelp=false" ng-minlength="2" placeholder="name" required="required">
     <div class="formGuide nameTop" ng-if="nameHelp" >

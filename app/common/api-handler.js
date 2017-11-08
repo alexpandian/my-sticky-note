@@ -24,10 +24,10 @@ apiHandler.service("requestService", ["_ak_","apiRootUrl", "$http", "$rootScope"
 		}
 	};
 
-	this.makePutRequest = function(relativeUrl, requestData){
+	this.makePostRequest = function(relativeUrl, requestData){
 		requestData._ak_ = apiKey;
 		$http({
-			method : "PUT",
+			method : "POST",
 			url    : apiRootUrl + relativeUrl,
 			data   : requestData
 		})
@@ -42,10 +42,10 @@ apiHandler.service("requestService", ["_ak_","apiRootUrl", "$http", "$rootScope"
 		);
 	};
 
-	this.makePostRequest = function(relativeUrl, requestData){
+	this.makeGetRequest = function(relativeUrl, requestData){
 		requestData._ak_ = apiKey;
 		$http({
-			method : "POST",
+			method : "GET",
 			url    : apiRootUrl + relativeUrl,
 			data   : requestData
 		})

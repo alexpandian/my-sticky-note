@@ -11,23 +11,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body ng-app="login" >
 
-	<div class="container">
+	<div class="container-fluid">
 	    <div class="row">
 	        <h2>Login</h2>
 	    </div>
 	</div>
 	<br>
 	<br>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
+			<div class="col-md-6 col-md-offset-3">
 				<div class="form-body shadow">
 				    <ul class="nav nav-tabs final-login">
-				        <li ui-sref="login" ui-sref-active="active" class="pointer">
+				        <li ui-sref="login" ui-sref-active="active" class="pointer col-md-4">
 				        	<a>Sign In</a>
 				        </li>
-				        <li ui-sref="join" ui-sref-active="active" class="pointer">
-				        	<a>Join Now!</a>
+				        <li ui-sref="join" ui-sref-active="active" class="pointer col-md-4">
+				        	<a>Join Now</a>
+				        </li>
+				        <li ui-sref="forgetPassword" ui-sref-active="active" class="pointer col-md-4">
+				        	<a>Lost Password ?</a>
 				        </li>
 				    </ul>
 				    <div class="tab-content">
@@ -46,9 +49,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				            <div class="clearfix"></div>
 				        </div>
 				        <div id="sectionB" class="tab-pane fade">
-				            <div class="innter-form">
-					            
-				            </div>
 				            <div class="social-login">
 					            <p>- - - - - - - - - - - - - Register With - - - - - - - - - - - - - </p>
 					            <ul>
