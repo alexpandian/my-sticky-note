@@ -56,8 +56,8 @@ p {
 </style>
 </head>
 <body>
-	<div id="container">
-		<h1><?php echo $heading; ?></h1>
+	<div id="container">fgdfgdfgdfgdfgdfg
+		<h1><?php echo $heading; ?>das</h1>
 		<?php echo $message; ?>
 	</div>
 </body>
