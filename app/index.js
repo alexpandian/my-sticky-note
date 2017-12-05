@@ -27,7 +27,7 @@ login.config(function($stateProvider, $urlRouterProvider){
 
 
 
-login.service("loginrequestService", ["requestService", "_ak_","apiRootUrl", "$http", function(requestService, apiKey, apiRootUrl, $http){
+login.service("loginrequestService", ["requestService", function(requestService, apiKey, apiRootUrl, $http){
 
 	this.checkLogin = function(requestData){
 		return true;
@@ -35,7 +35,7 @@ login.service("loginrequestService", ["requestService", "_ak_","apiRootUrl", "$h
 	};
 
 }]);
-login.service("joinRequestService", ["requestService", "_ak_","apiRootUrl", "$http", function(requestService, apiKey, apiRootUrl, $http){
+login.service("joinRequestService", ["requestService", function(requestService, apiKey, apiRootUrl, $http){
 
 	this.registerUser = function(requestData){
 		return requestService.makePostRequest("/join", requestData );
@@ -51,7 +51,7 @@ login.service("joinRequestService", ["requestService", "_ak_","apiRootUrl", "$ht
 	};
 
 }]);
-login.service("ForgetPasswordRequestService", ["requestService", "_ak_","apiRootUrl", "$http", function(requestService, apiKey, apiRootUrl, $http){
+login.service("ForgetPasswordRequestService", ["requestService",function(requestService, apiKey, apiRootUrl, $http){
 
 	this.resetPassword = function(requestData){
 		return false;
